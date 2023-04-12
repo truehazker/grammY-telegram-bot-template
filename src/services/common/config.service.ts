@@ -12,12 +12,17 @@ enum ELogLevel {
 
 const configSchema = z.object({
   BOT_API_KEY: z.string(),
-  ADMIN_IDS: z.string().transform((str) => str.split(',')),
-  LOG_LEVEL: z.nativeEnum(ELogLevel).default(ELogLevel.INFO),
+  ADMIN_IDS: z.array(z.number().int()).default([]),
+  LOG_LEVEL: z.nativeEnum(ELogLevel).optional().default(ELogLevel.INFO),
 });
 
 const parseConfig = (env: NodeJS.ProcessEnv) => {
-  return configSchema.parse(env);
+  // Parse ADMIN_IDS from string to array of numbers
+  const adminIds = env.ADMIN_IDS ? env.ADMIN_IDS.split(',').map((id) => parseInt(id)) : [];
+  return configSchema.parse({
+    ...env,
+    ADMIN_IDS: adminIds
+  });
 };
 
 export type TConfig = ReturnType<typeof parseConfig>;
