@@ -1,4 +1,4 @@
-import { Logger } from '../constants';
+import { Logger } from '../services';
 import { GrammyError, HttpError } from 'grammy';
 
 const errorHandler = (err: any) => {

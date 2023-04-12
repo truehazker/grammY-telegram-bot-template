@@ -1,5 +1,5 @@
 import pino, { DestinationStream, LoggerOptions } from 'pino';
-import { Config } from './config.const';
+import { Config } from '../index';
 
 const options: LoggerOptions = {
   level: Config.LOG_LEVEL,
