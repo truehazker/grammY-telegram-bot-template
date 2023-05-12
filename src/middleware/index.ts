@@ -1,8 +1,8 @@
 import { Composer } from 'grammy';
 import { BotContext } from '../types';
 import { hydrate } from '@grammyjs/hydrate';
-import { configMiddleware } from './config.middleware';
-import { loggerMiddleware } from './logger.middleware';
+import { configMiddleware } from './common';
+import { loggerMiddleware } from './common';
 
 // Global middleware
 // Add new middleware to this file
